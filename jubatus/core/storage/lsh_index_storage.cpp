@@ -178,6 +178,7 @@ void lsh_index_storage::remove_row(const string& row) {
   if (entry_it == master_table_.end()) {
     // Since the row is not yet mixed, it can be immediately erased.
     master_table_diff_.erase(row);
+    common::shrink_to_fit(master_table_diff_);
     return;
   }
 
@@ -303,6 +304,7 @@ bool lsh_index_storage::put_diff(
     if (it->second.lsh_hash.empty()) {
       remove_model_row(it->first);
       master_table_.erase(it->first);
+      common::shrink_to_fit(master_table_);
     } else {
       remove_model_row(it->first);
       set_mixed_row(it->first, it->second);

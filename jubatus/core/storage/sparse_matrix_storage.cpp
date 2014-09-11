@@ -132,6 +132,7 @@ void sparse_matrix_storage::remove(const string& row, const string& column) {
   }
   // norm_ptr_->notify(row, cit->second, 0.f);
   it->second.erase(cit);
+  common::shrink_to_fit(it->second);
 }
 
 void sparse_matrix_storage::remove_row(const string& row) {
@@ -146,6 +147,7 @@ void sparse_matrix_storage::remove_row(const string& row) {
   // }
 
   tbl_.erase(it);
+  common::shrink_to_fit(tbl_);
 }
 
 void sparse_matrix_storage::get_all_row_ids(vector<string>& ids) const {

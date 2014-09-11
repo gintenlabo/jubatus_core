@@ -62,4 +62,17 @@ inline packer<Stream>& operator<<(
 
 }  // namespace msgpack
 
+namespace jubatus {
+namespace core {
+namespace common {
+
+template<class K, class T, class H, class E, class A>
+void shrink_to_fit(jubatus::util::data::unordered_map<K, T, H, E, A>& x) {
+  x.rehash(0);
+}
+
+}  // namespace common
+}  // namespace core
+}  // namespace common
+
 #endif  // JUBATUS_CORE_COMMON_UNORDERED_MAP_HPP_

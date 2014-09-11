@@ -133,10 +133,12 @@ void inverted_index_storage::remove(
       row_t::iterator it_row = it->second.find(column_id);
       if (it_row != it->second.end()) {
         it->second.erase(it_row);
+        common::shrink_to_fit(it->second);
         if (it->second.empty()) {
           // There are no columns that belongs to this row,
           // so we can remove the row itself.
           inv_diff_.erase(it);
+          common::shrink_to_fit(inv_diff_);
         }
       }
     }

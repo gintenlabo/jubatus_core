@@ -68,6 +68,7 @@ void bit_index_storage::remove_row(const string& row) {
     // The row is not in the master table; we can
     // immedeately remove it from the diff table.
     bitvals_diff_.erase(row);
+    common::shrink_to_fit(bitvals_diff_);
   } else {
     // Keep the row in the diff table until next MIX to
     // propagate the removal of this row to other nodes.
@@ -104,11 +105,12 @@ bool bit_index_storage::put_diff(
       it != mixed_diff.end(); ++it) {
     if (it->second.bit_num() == 0) {
       bitvals_.erase(it->first);
+      common::shrink_to_fit(bitvals_);
     } else {
       bitvals_[it->first] = it->second;
     }
   }
-  bitvals_diff_.clear();
+  bit_table_t().swap(bitvals_diff_);
   return true;
 }
 
