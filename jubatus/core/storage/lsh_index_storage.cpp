@@ -309,11 +309,11 @@ bool lsh_index_storage::put_diff(
     }
   }
 
-  master_table_diff_.clear();
+  lsh_master_table_t().swap(master_table_diff_);
 
   // lsh_table_diff_ is actually not MIXed, but must be cleared as well as diff
   // of usual model.
-  lsh_table_diff_.clear();
+  lsh_table_t().swap(lsh_table_diff_);
   return true;
 }
 
