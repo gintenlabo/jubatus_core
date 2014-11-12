@@ -53,25 +53,25 @@
 // unlike glog CHECK, this macro cannot take trailing `<<';
 // please use JUBATUS_ASSERT_MSG if you need extra messages.
 #define JUBATUS_ASSERT(expr)  \
-    do { JUBATUS_ASSERT_MSG(expr, ""); } while (0)
+    JUBATUS_ASSERT_MSG(expr, "")
 
 // declares control flow not to reach here
 #define JUBATUS_ASSERT_UNREACHABLE()  \
-    do { JUBATUS_ASSERT_MSG(0, "control flow not to reach here"); } while (0)
+    JUBATUS_ASSERT_MSG(0, "control flow not to reach here")
 
 // helpers to compare values
 #define JUBATUS_ASSERT_EQ(a, b, messages)   \
-    do { JUBA_CHECK(a, ==, b, messages); } while (0)
+    JUBA_CHECK(a, ==, b, messages)
 #define JUBATUS_ASSERT_NE(a, b, messages)   \
-    do { JUBA_CHECK(a, !=, b, messages); } while (0)
+    JUBA_CHECK(a, !=, b, messages)
 #define JUBATUS_ASSERT_LE(a, b, messages)   \
-    do { JUBA_CHECK(a, <=, b, messages); } while (0)
+    JUBA_CHECK(a, <=, b, messages)
 #define JUBATUS_ASSERT_LT(a, b, messages)   \
-    do { JUBA_CHECK(a, <, b, messages);  } while (0)
+    JUBA_CHECK(a, <, b, messages)
 #define JUBATUS_ASSERT_GE(a, b, messages)   \
-    do { JUBA_CHECK(a, >=, b, messages); } while (0)
+    JUBA_CHECK(a, >=, b, messages)
 #define JUBATUS_ASSERT_GT(a, b, messages)   \
-    do { JUBA_CHECK(a, >, b, messages);  } while (0)
+    JUBA_CHECK(a, >, b, messages)
 
 #else  // #ifndef JUBATUS_DISABLE_ASSERTIONS
 
